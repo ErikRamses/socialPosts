@@ -21,3 +21,9 @@ insecure@1.0.7                # Allow all DB writes from clients (for prototypin
 twbs:bootstrap
 iron:router
 momentjs:moment
+meteortoys:allthings
+check
+joshowens:shareit
+accounts-ui
+accounts-facebook
+facebook-config-ui

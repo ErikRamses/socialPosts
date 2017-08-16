@@ -1,18 +1,25 @@
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>socialPost</title>
 </head>
 
 <template name="main">
    <div class="container">
     <div class="row">
-      <h1>Lista de Posts</h1>
+      <div class="col-md-6">
+        <h1>Lista de Posts</h1>
+      </div>
+      <div class="col-md-6">
+        {{> loginButtons}}
+      </div>
+    </div>
+    <div class="row">
       {{> yield}}
     </div>
   </div>
 </template>
 
 <template name="posts">
-  <div class="row">
    {{#each listaPosts}}
         <div class="col-md-4">
            <div class="single-blog-item">
@@ -20,20 +27,18 @@
                         <a href=""><img src="http://via.placeholder.com/370x275" alt="blog-img"></a>
                     </div>
                     <div class="blog-content">
-                        <h4><a href="#">Lorem ipsum dolor sit amet</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint expedita exercitationem nostrum, eligendi quis, esse quos atque in molestias animi.</p>
-                        <a href="" class="more-btn">Compartir</a>
+                        <h4><a href="#">{{titulo}}</a></h4>
+                        <p>{{contenido}}</p>
+                        <a href="" class="more-btn deleteField">Delete Field</a>
+                        {{> shareit}}
                     </div>
                     <span class="blog-date">May 03, 2015</span>
                 </div>
          </div>          
   {{/each}}
-  </div>
-  <div class="row">
     <div class="col-md-12">
       <a class="form-control btn btn-info crearPost">
         Crear Post
       </a> 
     </div> 
-  </div>
 </template>
