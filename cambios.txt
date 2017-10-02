@@ -1,0 +1,20 @@
+- Categoría al momento de agregar cuenta, Categoria:
+		-	SOFTBALL
+		-	BASEBALL
+		-	FASTPICH
+		-	FOOTBALL
+		-	SOCCER
+		-	FISHING
+		-	HOUNTING
+
+	se agrega el campo get categoria a la url de crear cuenta con cualquier valor de ese filtrado y lo guardas localmente en la app como parte de atributos del usuario.
+
+	se mandara una variable get a login ?cat=[cattegoria] la cual dara referencia a la categoria que sera el usuario.
+
+	mandarme aparte de la ubicacion la ciudad ya sea texto variable:  &ciudad0[ciudad]
+
+
+- Los post tendra un nuevo campo que se va a llamar categoria hacer filtrado por la categoria de cada usuario.
+	- Post.
+	- Noticias.
+	- Productos.

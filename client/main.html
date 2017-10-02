@@ -1,44 +1,270 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>socialPost</title>
+  <title>Zurdox Social</title>
 </head>
 
+<template name="login">
+  <div class = "container">
+  <div class="wrapper">   
+        <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+        <hr class="colorgraph"><br>       
+        <a class="btn btn-lg btn-primary btn-block login-facebook">Login with Facebook</a>
+        <br />
+        <select class="form-control" id="categoria" name="Cat">
+          <option>Selecciona una categoría</option>
+          <option>SOFTBALL</option>
+          <option selected>BASEBALL</option>
+          <option>FASTPICH</option>
+          <option>FOOTBALL</option>
+          <option>SOCCER</option>
+          <option>FISHING</option>
+          <option>HOUNTING</option>
+        </select>
+         <hr><br>
+         {{#if currentUser}}        
+        <center>
+        <a href="/posts" class="btn btn-lg btn-info">Entry</a>
+        <a href="/posts"><img src="/logo.png" alt="Zurdox" class="img-responsive img-logo"></a>
+        </center>
+        {{/if}}
+        <!--center>
+        <div class="fb-login-button" data-width="100" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="true"></div>
+        </center-->
+  </div>
+</div>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">How to use Zurdox Social</h4>
+            </div>
+            <div class="modal-body">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/F7xmh8T5eUc" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
 <template name="main">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=2077837752462304";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  {{> menu}}
    <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <h1>Lista de Posts</h1>
-      </div>
-      <div class="col-md-6">
-        {{> loginButtons}}
-      </div>
+    <div class="row mt35">
     </div>
-    <div class="row">
       {{> yield}}
-    </div>
   </div>
 </template>
 
 <template name="posts">
+<div class="row">
+<div class="col-md-12">
+  <h1>Zurdox's Posts</h1>
+</div>
+</div> 
+<div class="row rowPinterest">
    {{#each listaPosts}}
-        <div class="col-md-4">
+        <div class="item">
            <div class="single-blog-item">
                     <div class="blog-thumnail">
-                        <a href=""><img src="http://via.placeholder.com/370x275" alt="blog-img"></a>
+                        <a href=""><img src="{{imagen}}" alt="blog-img"></a>
                     </div>
                     <div class="blog-content">
-                        <h4><a href="#">{{titulo}}</a></h4>
-                        <p>{{contenido}}</p>
-                        <a href="" class="more-btn deleteField">Delete Field</a>
-                        {{> shareit}}
+                        <h4><a href="#">{{title}}</a></h4>
+                        <h4>{{categoria}}</h4>
+                        <p>{{desc}}</p>
+                        <center><a class="btn btn-primary publishFb" href="#"><i class="fa fa-facebook"></i> Publish on Facebook</a>
+                        </center>
                     </div>
-                    <span class="blog-date">May 03, 2015</span>
+                    <span class="blog-date">{{date}}</span>
                 </div>
          </div>          
   {{/each}}
-    <div class="col-md-12">
+</div>  
+    <!--div class="col-md-12">
       <a class="form-control btn btn-info crearPost">
         Crear Post
       </a> 
-    </div> 
+    </div--> 
 </template>
+
+<template name="news">
+<div class="col-md-12">
+  <h1>Zurdox's News</h1>
+</div> 
+   {{#each listaNoticias}}
+        <div class="col-md-4">
+           <div class="single-blog-item">
+                    <div class="blog-thumnail">
+                        <a href=""><img src="{{imagen}}" alt="blog-img"></a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a href="#">{{title}}</a></h4>
+                        <p>{{desc}}</p>
+                        <center><a class="btn btn-primary publishFb" href="#"><i class="fa fa-facebook"></i> Publish on Facebook</a>
+                        </center>
+                    </div>
+                    <span class="blog-date">{{date}}</span>
+                </div>
+         </div>          
+  {{/each}}
+    <!--div class="col-md-12">
+      <a class="form-control btn btn-info crearPost">
+        Crear Post
+      </a> 
+    </div--> 
+</template>
+
+<template name="topten">
+<div class="col-md-12">
+  <h1>Zurdox's Top 10</h1>
+</div> 
+   {{#each listaTop}}
+        <div class="col-md-4">
+           <div class="single-blog-item">
+                    <div class="blog-thumnail">
+                        <a href=""><img src="{{imagen}}" alt="blog-img"></a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a href="#">{{title}}</a></h4>
+                        <p>{{desc}}</p>
+                        <center><a class="btn btn-primary publishFb" href="#"><i class="fa fa-facebook"></i> Publish on Facebook</a>
+                        </center>
+                    </div>
+                    <span class="blog-date">{{date}}</span>
+                </div>
+         </div>          
+  {{/each}}
+    <!--div class="col-md-12">
+      <a class="form-control btn btn-info crearPost">
+        Crear Post
+      </a> 
+    </div--> 
+</template>
+
+<template name="privacy">
+<div class="col-md-12">
+  <h1>This is a privacy advice</h1>
+  <h2>All your data is safe.</h2>
+</div> 
+</template>
+
+
+<template name="profile">
+<div class="col-md-12">
+  <h1>Posts shared by {{currentUser.profile.username}}</h1>
+  <h3>Zurdox's Points: {{currentUser.profile.points}}</h3>
+</div> 
+   {{#each postInfo}}
+        <div class="col-md-4">
+           <div class="single-blog-item">
+              <div class="blog-thumnail">
+                <a href=""><img src="{{imagen}}" alt="blog-img"></a>
+              </div>
+              <div class="blog-content">
+                  <h4><a href="#">{{title}}</a></h4>
+                  <p>{{desc}}</p>
+                  <center>
+                    <a class="btn btn-primary getPoints" href="#">Get Points</a>
+                  </center>
+              </div>
+                </div>
+         </div>          
+  {{/each}}
+</template>
+
+<template name="menu">
+<div id="topo">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-ms-4 col-xs-4" id="logo-topo">
+          <a href="/posts"><img src="/logo.png" alt="Zurdox" class="img-responsive img-logo"></a>
+      </div>
+      <div class="col-md-4 col-ms-4 col-xs-4">
+          <span class="pull-right"><h2><i class="fa fa-facebook"></i> {{currentUser.profile.username}}</h2>
+          </span>
+      </div>
+      <div class="col-md-4 col-ms-4 col-xs-4" id="abre-menu-topo">
+       <a href="#" class="btn-collapse">
+         <div class="lista-collapse"></div>
+         <div class="lista-collapse"></div>
+         <div class="lista-collapse"></div>
+       </a>
+      
+      </div>
+    </div><!--Fim da Row1 -->
+    <div class="row">
+      <ul id="menu-topo">
+        <li><a href="/posts">Home</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/news">News</a></li>
+        <li><a href="/topten" class="dentro">Top 10</a></li>
+        <li><a href="" class="dentro logout">Logout</a></li>
+      </ul>
+    </div>
+  </div><!--Fim da coontainer -->
+</div><!--Fim do topo -->
+</template>
+
+<template name="nota">
+{{#with postUnico}}
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Post Content Column -->
+            <div class="col-md-12">
+
+                <!-- Blog Post -->
+
+                <!-- Title -->
+                <h1>{{title}}</h1>
+
+                <!-- Author -->
+                <p class="lead">
+                    by <a href="http://www.store.zurdox.com/">Zurdox</a>
+                    <a class="btn btn-info publishFb" href="#">Publicar en Facebook</a>
+                </p>
+
+                <hr>
+
+                <!-- Date/Time -->
+                <p><span class="glyphicon glyphicon-time"></span> {{date}} </p>
+
+                <hr>
+
+                <!-- Preview Image -->
+                <img class="img-responsive" src="{{imagen}}" alt="{{title}}">
+
+                <hr>
+
+                <!-- Post Content -->
+                <p class="lead">{{desc}}</p>
+
+            </div>
+        </div>
+        <!-- /.row -->
+        <hr>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Zurdox 2017</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+{{/with}}
+</template>
+
