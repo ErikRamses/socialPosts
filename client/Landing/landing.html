@@ -1,10 +1,26 @@
 <template name="landing">
 	<link rel="stylesheet" href="/assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
 		<style>
+		@font-face {
+			font-family: MyHelvetica;
+			src: local("Helvetica Neue Bold"),
+			     local("HelveticaNeue-Bold"),
+			     url(Legend M54.ttf);
+			font-weight: bold;
+		}
 		#header{
 			background-size: auto, cover !important;
 			background-repeat: no-repeat;
+		}
+		#banner{
+			background-size: cover !important;
+			background-position: center !important;
+			background-repeat: no-repeat !important;
+		}
+		.textotexto{
+			font-family: 'MyHelvetica', sans-serif !important;
 		}
 		#logisimo{
 			-moz-box-shadow: 0px 0px 30px #ffffff; 
@@ -64,10 +80,8 @@ box-shadow: 0px 0px 30px #ffffff;
 				<!-- Banner -->
 					<section id="banner">
 						<div class="inner ineertopp">
-							<img src="/Z TEXTO.png" class="imgsupp"/>
-							<!--<div class="logo"><img id="logisimo" src="logo-arriba.png"></div>
-							<h2>JOIN THE ZURDOX FAMILY!!</h2>
-							<p>Join and take advantage of all the benefits of our advocacy product and help us become the company you want us to be!!!!</p>-->
+							<!--<img src="/Z TEXTO.png" class="imgsupp"/>-->
+							<h2 class="textotexto">JOIN AND TAKE ADVANTAGE OF ALL THE BENEFITS OF OUR ADVOCACY PROGRAM. AND HELP US BECOM THE COMPANY YOU WANT US TO BE.</h2>
 						</div>
 					</section>
 

@@ -4,12 +4,42 @@
 </head>
 
 <template name="login">
+  <style>
+    .container{
+      position: fixed !important;
+      top:0px;
+      right: 0px;
+      width: 100%;
+      height: 100%;
+      background-image: url(https://k60.kn3.net/taringa/3/7/4/A/E/0/VCLR/21C.jpg) !important;
+    }
+    .loginform{
+      position: fixed !important;
+      top:0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      width: 450px;
+      height: 350px;
+      margin:auto;
+      background: rgba(255,255,255,.9);
+      border-radius: 50px;
+    }
+
+    @media (max-width: 700px){
+      .loginform{
+        width:100%;
+      }
+    }
+  </style>
   <div class = "container">
   <div class="wrapper">   
-        <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+    <div class="loginform">
+      <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
         <hr class="colorgraph"><br>       
         <a class="btn btn-lg btn-primary btn-block login-facebook">Login with Facebook</a>
         <br />
+        <label>Categoría:</label>
         <select class="form-control" id="categoria" name="Cat">
           <option>Selecciona una categoría</option>
           <option>SOFTBALL</option>
@@ -20,13 +50,14 @@
           <option>FISHING</option>
           <option>HOUNTING</option>
         </select>
-         <hr><br>
+        <br>
          {{#if currentUser}}        
         <center>
         <a href="/posts" class="btn btn-lg btn-info">Entry</a>
         <a href="/posts"><img src="/logo.png" alt="Zurdox" class="img-responsive img-logo"></a>
         </center>
         {{/if}}
+    </div>
         <!--center>
         <div class="fb-login-button" data-width="100" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="true"></div>
         </center-->
@@ -67,7 +98,9 @@
 <template name="posts">
 <div class="row">
 <div class="col-md-12">
-  <h1>Zurdox's Posts</h1>
+  <center>
+    <h1>Zurdox's Posts</h1>
+  </center>
 </div>
 </div> 
 <div class="row rowPinterest">
@@ -79,7 +112,7 @@
                     </div>
                     <div class="blog-content">
                         <h4><a href="#">{{title}}</a></h4>
-                        <h4>{{categoria}}</h4>
+                        <h5>{{categoria}}</h5>
                         <p>{{desc}}</p>
                         <center><a class="btn btn-primary publishFb" href="#"><i class="fa fa-facebook"></i> Publish on Facebook</a>
                         </center>
@@ -98,7 +131,9 @@
 
 <template name="news">
 <div class="col-md-12">
-  <h1>Zurdox's News</h1>
+  <center>
+    <h1>Zurdox's News</h1>
+  </center>
 </div> 
    {{#each listaNoticias}}
         <div class="col-md-4">
@@ -125,7 +160,9 @@
 
 <template name="topten">
 <div class="col-md-12">
-  <h1>Zurdox's Top 10</h1>
+    <center>
+      <h1>Zurdox's Top 10</h1>
+   </center>
 </div> 
    {{#each listaTop}}
         <div class="col-md-4">
@@ -160,8 +197,10 @@
 
 <template name="profile">
 <div class="col-md-12">
-  <h1>Posts shared by {{currentUser.profile.username}}</h1>
-  <h3>Zurdox's Points: {{currentUser.profile.points}}</h3>
+  <center>
+      <h3>Posts shared by {{currentUser.profile.username}}</h3>
+      <h4>Zurdox's Points: {{currentUser.profile.points}}</h4>
+  </center>
 </div> 
    {{#each postInfo}}
         <div class="col-md-4">
@@ -182,23 +221,38 @@
 </template>
 
 <template name="menu">
+<style>
+  
+  #abre-menu-topo{
+    margin: 5px;
+    margin-top: 20px;
+  }
+  .z-zurdox{
+    width: 69px;
+    height: 89px;
+  }
+  #z-zurdox{
+    position: absolute;
+    top:0px;
+    right: 8px;
+  }
+</style>
 <div id="topo">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-ms-4 col-xs-4" id="logo-topo">
-          <a href="/posts"><img src="/logo.png" alt="Zurdox" class="img-responsive img-logo"></a>
+      <div class="col-md-2 col-ms-2 col-xs-2" id="abre-menu-topo">
+         <a href="#" class="btn-collapse">
+           <div class="lista-collapse"></div>
+           <div class="lista-collapse"></div>
+           <div class="lista-collapse"></div>
+         </a>
       </div>
-      <div class="col-md-4 col-ms-4 col-xs-4">
-          <span class="pull-right"><h2><i class="fa fa-facebook"></i> {{currentUser.profile.username}}</h2>
+      <div class="col-md-6 col-ms-6 col-xs-6">
+          <span class="pull-left"><h4><i class="fa fa-facebook"></i> {{currentUser.profile.username}}</h4><h4><i class="fa fa-trophy"></i> {{currentUser.profile.points}}</h4>
           </span>
       </div>
-      <div class="col-md-4 col-ms-4 col-xs-4" id="abre-menu-topo">
-       <a href="#" class="btn-collapse">
-         <div class="lista-collapse"></div>
-         <div class="lista-collapse"></div>
-         <div class="lista-collapse"></div>
-       </a>
-      
+            <div class="" id="z-zurdox">
+          <a href="/posts"><img src="/z.png" alt="Zurdox" class="z-zurdox img-responsive img-logo left"></a>
       </div>
     </div><!--Fim da Row1 -->
     <div class="row">
