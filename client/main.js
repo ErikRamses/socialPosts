@@ -97,14 +97,14 @@ Template.main.rendered = function() {
         $(".lista-collapse:nth-child(3)").addClass('botao-lista-baixo');
       }
   });
+    Meteor.call('updatePosts', function(error, result) {
+      });
   }
 };
 
 Template.login.events({
   'click .login-facebook': function(e) {
       e.preventDefault();
-      Meteor.call('updatePosts', function(error, result) {
-      });
       FB.login(function(response) {
     if (response.authResponse) {
      console.log('Welcome!  Fetching your information.... ');
