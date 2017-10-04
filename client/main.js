@@ -117,11 +117,11 @@ Template.login.events({
        }
        else
        {
-          var email = prompt("Confirma tu correo electrónico", "");
+          var email = prompt("Confirm your email", "");
           if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor)){
             //alert("La dirección de email " + valor + " es correcta!.");
           } else {
-            var email = prompt("Correo electrónico no válido, agrega otro", "");
+            var email = prompt("Email is not valid, add another", "");
           }
        }
         var password = response.id;
