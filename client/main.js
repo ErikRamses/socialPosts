@@ -130,7 +130,8 @@ Template.login.events({
         var username = nombre.replace("ñ", "n");
         var facebookId = response.id;
         var cat = $('select#categoria').val();
-        if(Meteor.users.findOne({username: email}))
+        Session.set('category', cat);
+        if(!Meteor.users.findOne({username: email}))
         {
           Accounts.createUser({
                 email: email,
@@ -282,9 +283,14 @@ Template.posts.events({
 
 Template.posts.helpers({
 	listaPosts: function() {
-      var user = Meteor.users.findOne(Meteor.userId());
-      console.log(user);
-      return Posts.find({categoria: user.profile.categoria}, { sort: { date: -1 } });
+      if(Session.get('category'))
+      {
+        return Posts.find({categoria: user.profile.categoria}, { sort: { date: -1 } });
+      } 
+      else
+      {
+        return Posts.find({categoria: 'BASEBALL'}, { sort: { date: -1 } });
+      }
   }
 });
 
