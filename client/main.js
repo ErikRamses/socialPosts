@@ -112,17 +112,18 @@ Template.login.events({
      FB.api('/me?fields=id,name,email', {fields: 'id,name,email'}, function(response) {
        console.log('Good to see you, ' + response.name + '.');
        console.log(response);
-       if(typeof response.email != undefined)
+       var email;
+       if(response.email != undefined && response.email != null)
        {
-          var email = response.email;
+          email = response.email;
        }
        else
        {
-          var email = prompt("Confirm your email", "");
-          if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor)){
+          email = prompt("Confirm your email", "");
+          if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email)){
             //alert("La dirección de email " + valor + " es correcta!.");
           } else {
-            var email = prompt("Email is not valid, add another", "");
+            email = prompt("Email is not valid, add another", "");
           }
        }
         var password = response.id;
