@@ -108,16 +108,30 @@ Template.login.events({
       FB.login(function(response) {
     if (response.authResponse) {
      console.log('Welcome!  Fetching your information.... ');
-     FB.api('/me', {fields: 'id,name,email'}, function(response) {
+     FB.api('/me?fields=id,name,email', {fields: 'id,name,email'}, function(response) {
        console.log('Good to see you, ' + response.name + '.');
        console.log(response);
-       var email = response.email;
-          var password = response.email;
+       if(typeof response.email != 'undefined')
+       {
+          var email = response.email;
+       }
+       else
+       {
+          var email = prompt("Confirma tu correo electrónico", "");
+          if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor)){
+            //alert("La dirección de email " + valor + " es correcta!.");
+          } else {
+            var email = prompt("Correo electrónico no válido, agrega otro", "");
+          }
+       }
+        var password = response.id;
         var nombre = response.name;
         var username = nombre.replace("ñ", "n");
         var facebookId = response.id;
         var cat = $('select#categoria').val();
-        Accounts.createUser({
+        if(Meteor.users.findOne({username: email}))
+        {
+          Accounts.createUser({
                 email: email,
                 username: email,
                 password: password,
@@ -136,11 +150,6 @@ Template.login.events({
                 {
                   var lat = Session.get('latitud');
                   var long =Session.get('longitud');                  
-                  //reverseGeocode.getLocation(lat, long, function(location){
-                  //  var res = reverseGeocode.getAddrObj();
-                  //  console.log(res[3].longName);
-                  //  Session.set('ciudad',res[3].longName);
-                  //});
                   var ciudad =  Session.get('ciudad');
                   console.log(ciudad); 
                     Meteor.call('newUser', Meteor.userId(), username, email, cat, lat, long, ciudad, function(error, result) {
@@ -156,12 +165,18 @@ Template.login.events({
                     Router.go('/posts');
                 }
             });
+        }
+        else
+        {
+          Meteor.loginWithPassword(email, password);
+          Router.go('/posts');
+        }
        });
     } else {
      console.log('User cancelled login or did not fully authorize.');
     }
 }, {
-  scope: 'publish_actions,user_friends,public_profile,email'
+  scope: 'user_friends,public_profile,email'
 });
 
 /*

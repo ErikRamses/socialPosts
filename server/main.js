@@ -33,6 +33,7 @@ ServiceConfiguration.configurations.insert({
 var getFbPicture;
 
 Accounts.onCreateUser(function (options, user) {
+/*
  if (options.profile) {
     user.profile = options.profile;
   } else {
@@ -47,7 +48,8 @@ Accounts.onCreateUser(function (options, user) {
     user.profile.profilePicture = getFbPicture(user.services.facebook.accessToken);
     user.profile.facebookId = user.services.facebook.id;
     user.emails = [{address: user.services.facebook.email}];
-    //Hacer un post a salesforce
+    console.log(user);
+
     HTTP.call( 'GET', 'http://developer1-zurdoxtest.cs95.force.com/portalweb/advocay_nueva_cuenta?id_ref='+user.profile.facebookId+'&nombre='+user.username+'&correo'+user.services.facebook.email, {}, function( error, response )
   {
     if ( error ) {
@@ -58,7 +60,7 @@ Accounts.onCreateUser(function (options, user) {
         console.log( statusCode );
     }
     });
-    /*
+    
     HTTP.call( 'PUT', 'http://zurdox-test-developer-edition.na50.force.com/portalweb/advocay_nueva_cuenta', {
   		data: {
     		id_ref: user.profile.facebookId,
