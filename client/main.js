@@ -107,6 +107,7 @@ Template.login.events({
       e.preventDefault();
       FB.login(function(response) {
     if (response.authResponse) {
+            console.log(response);
      console.log('Welcome!  Fetching your information.... ');
      FB.api('/me?fields=id,name,email', {fields: 'id,name,email'}, function(response) {
        console.log('Good to see you, ' + response.name + '.');
