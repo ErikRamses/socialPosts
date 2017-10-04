@@ -111,7 +111,7 @@ Template.login.events({
      FB.api('/me?fields=id,name,email', {fields: 'id,name,email'}, function(response) {
        console.log('Good to see you, ' + response.name + '.');
        console.log(response);
-       if(typeof response.email != 'undefined')
+       if(typeof response.email != undefined)
        {
           var email = response.email;
        }
