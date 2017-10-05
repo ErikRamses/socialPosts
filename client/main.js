@@ -105,6 +105,18 @@ Template.main.rendered = function() {
 Template.login.events({
   'click .login-facebook': function(e) {
       e.preventDefault();
+      var cat = $('select#categoria').val();
+      Session.set('category', cat);
+      Meteor.loginWithFacebook({
+      requestPermissions: ['email', 'public_profile', 'user_friends']
+      }, (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          Router.go('/posts');
+        }
+      });
+    /*
       FB.login(function(response) {
     if (response.authResponse) {
             console.log(response);
@@ -181,7 +193,7 @@ Template.login.events({
 }, {
   scope: 'user_friends,public_profile,email'
 });
-
+*/
 /*
       Meteor.loginWithFacebook({
       requestPermissions: ['publish_actions','user_friends', 'user_birthday', 'email']
