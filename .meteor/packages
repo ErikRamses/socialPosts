@@ -22,14 +22,14 @@ iron:router
 momentjs:moment
 meteortoys:allthings
 check@1.2.5
-joshowens:shareit
 http@1.2.12
 chfritz:easycron
 biasport:facebook-sdk
-accounts-ui@1.1.9
 service-configuration@1.0.11
 accounts-base@1.3.4
 accounts-facebook@1.2.1
 accounts-password@1.4.0
 session@1.1.7
 jaymc:google-reverse-geocode
+facebook-oauth
+fortawesome:fontawesome

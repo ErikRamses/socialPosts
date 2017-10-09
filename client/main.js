@@ -1,6 +1,7 @@
 Meteor.subscribe("posts");
 Meteor.subscribe("postUser");
 Meteor.subscribe("news");
+Meteor.subscribe("users");
 
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
@@ -99,6 +100,26 @@ Template.main.rendered = function() {
   });
     Meteor.call('updatePosts', function(error, result) {
       });
+    if(!Meteor.user().profile.verified)
+    {
+      var lat = Session.get('latitud');
+    var long = Session.get('longitud');                  
+    var ciudad = Session.get('ciudad');
+    var cat = Session.get('category');
+    var username = Meteor.user().username;
+    var email = Meteor.user().profile.email;
+    Meteor.call('newUser', Meteor.userId(), username, email, cat, lat, long, ciudad, function(error, result) {
+      if(error)
+      {
+        console.log(error);  
+      }
+      else
+      {
+        console.log('Usuario dado de alta correctamente');
+      }
+    });
+    Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.verified":true}});
+    }
   }
 };
 
@@ -121,7 +142,7 @@ Template.login.events({
     if (response.authResponse) {
             console.log(response);
      console.log('Welcome!  Fetching your information.... ');
-     FB.api('/me?fields=id,name,email', {fields: 'id,name,email'}, function(response) {
+     FB.api('/me', {fields: 'id,name,email'}, function(response) {
        console.log('Good to see you, ' + response.name + '.');
        console.log(response);
        var email;
@@ -191,7 +212,7 @@ Template.login.events({
      console.log('User cancelled login or did not fully authorize.');
     }
 }, {
-  scope: 'user_friends,public_profile,email'
+  scope: 'email,public_profile,user_friends'
 });
 */
 /*
@@ -214,10 +235,10 @@ Template.menu.events({
     event.preventDefault();
     console.log('logout');
     Meteor.logout(function(error, result){
-      FB.logout(function(response) {
-        // user is now logged out
-      });
-      Router.go('login');
+      //FB.logout(function(response) {
+      //  console.log(response);
+      //});
+      Router.go('/login');
     });
   }
 });
@@ -298,7 +319,7 @@ Template.posts.helpers({
 	listaPosts: function() {
       if(Session.get('category'))
       {
-        return Posts.find({categoria: user.profile.categoria}, { sort: { date: -1 } });
+        return Posts.find({categoria: Session.get('category')}, { sort: { date: -1 } });
       } 
       else
       {

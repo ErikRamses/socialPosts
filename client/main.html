@@ -196,14 +196,17 @@
 
 
 <template name="profile">
+<div class="row">
 <div class="col-md-12">
   <center>
       <h3>Posts shared by {{currentUser.profile.username}}</h3>
       <h4>Zurdox's Points: {{currentUser.profile.points}}</h4>
   </center>
 </div> 
+</div> 
+<div class="row rowPinterest">
    {{#each postInfo}}
-        <div class="col-md-4">
+        <div class="item">
            <div class="single-blog-item">
               <div class="blog-thumnail">
                 <a href=""><img src="{{imagen}}" alt="blog-img"></a>
@@ -218,6 +221,7 @@
                 </div>
          </div>          
   {{/each}}
+</div> 
 </template>
 
 <template name="menu">
@@ -248,7 +252,8 @@
          </a>
       </div>
       <div class="col-md-6 col-ms-6 col-xs-6">
-          <span class="pull-left"><h4><i class="fa fa-facebook"></i> {{currentUser.profile.username}}</h4><h4><i class="fa fa-trophy"></i> {{currentUser.profile.points}}</h4>
+          <span class="pull-left"><h4><i class="fa fa-facebook"></i> {{currentUser.profile.name}}</h4>
+          <h4><i class="fa fa-trophy"></i> {{currentUser.profile.points}}</h4>
           </span>
       </div>
             <div class="" id="z-zurdox">

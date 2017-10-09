@@ -20,7 +20,7 @@ module.exports = {
     },
     env: {
       PORT: 80,
-      ROOT_URL: 'http://104.131.117.158',
+      ROOT_URL: 'http://zurdoxsocial.com/',
       MONGO_URL: 'mongodb://localhost/meteor',
       VIRTUAL_HOST: 'zurdoxsocial.com'
     },
