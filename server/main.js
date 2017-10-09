@@ -33,7 +33,6 @@ ServiceConfiguration.configurations.insert({
 var getFbPicture;
 
 Accounts.onCreateUser(function (options, user) {
-/*
  if (options.profile) {
     user.profile = options.profile;
   } else {
@@ -60,7 +59,7 @@ Accounts.onCreateUser(function (options, user) {
         console.log( statusCode );
     }
     });
-    
+/*
     HTTP.call( 'PUT', 'http://zurdox-test-developer-edition.na50.force.com/portalweb/advocay_nueva_cuenta', {
   		data: {
     		id_ref: user.profile.facebookId,
