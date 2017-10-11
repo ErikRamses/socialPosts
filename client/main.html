@@ -26,6 +26,10 @@
       border-radius: 50px;
     }
 
+    .hiw{
+      display: none;
+    }
+
     @media (max-width: 700px){
       .loginform{
         width:100%;
@@ -71,7 +75,26 @@
                 <h4 class="modal-title">How to use Zurdox Social</h4>
             </div>
             <div class="modal-body">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/F7xmh8T5eUc" frameborder="0" allowfullscreen></iframe>
+                <img class="hiw hiw1 img-responsive" src="1.png"/>
+                <img class="hiw hiw2 img-responsive" src="2.png"/>
+                <img class="hiw hiw3 img-responsive" src="3.png"/>
+                <img class="hiw hiw4 img-responsive" src="4.png"/>
+                <img class="hiw hiw5 img-responsive" src="5.png"/>
+                <img class="hiw hiw6 img-responsive" src="6.png"/>
+                <script type="text/javascript">
+                  $(function(){
+                    setTimeout(function(){
+                      var inter = 1;
+                      setInterval(function(){
+                        $(".hiw").hide();
+                        $(".hiw"+inter).show();
+                        inter++;
+                        if(inter>6)
+                          inter = 1;
+                      },3000);
+                    },2000);
+                  });
+                </script>
             </div>
         </div>
     </div>
