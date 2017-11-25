@@ -48,12 +48,12 @@ Accounts.onCreateUser(function (options, user) {
     user.profile.facebookId = user.services.facebook.id;
     user.emails = [{address: user.services.facebook.email}];
     user.profile.email = user.services.facebook.email;
-    console.log('http://developer1-zurdoxtest.cs95.force.com/portalweb/advocay_nueva_cuenta?id_ref='+user.profile.facebookId+'&nombre='+user.username+'&correo='+user.services.facebook.email);
+    console.log('http://zurdox.force.com/portalweb/advocay_nueva_cuenta?id_ref='+user.profile.facebookId+'&nombre='+user.username+'&correo='+user.services.facebook.email);
     Salesforce.insert({
-      query: 'http://developer1-zurdoxtest.cs95.force.com/portalweb/advocay_nueva_cuenta?id_ref='+user.profile.facebookId+'&nombre='+user.username+'&correo='+user.services.facebook.email, 
+      query: 'http://zurdox.force.com/portalweb/advocay_nueva_cuenta?id_ref='+user.profile.facebookId+'&nombre='+user.username+'&correo='+user.services.facebook.email, 
       date: moment().format('YYYY-MM-DD'),
     });
-    //HTTP.call( 'GET', 'http://developer1-zurdoxtest.cs95.force.com/portalweb/advocay_nueva_cuenta?id_ref='+user.profile.facebookId+'&nombre='+user.username+'&correo='+user.services.facebook.email, {}, function( error, response )
+    //HTTP.call( 'GET', 'http://zurdox.force.com/portalweb/advocay_nueva_cuenta?id_ref='+user.profile.facebookId+'&nombre='+user.username+'&correo='+user.services.facebook.email, {}, function( error, response )
     //{
     //if ( error ) {
     //  console.log( error );

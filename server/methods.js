@@ -19,12 +19,12 @@ Meteor.methods({
   	},
   publishFacebook(id, user, titulo)
   {
-    console.log('http://developer1-zurdoxtest.cs95.force.com/portalweb/generar_nuevo_post?id_ref='+id+'&usuario_id='+user+'&titulo_post='+titulo);
+    console.log('http://zurdox.force.com/portalweb/generar_nuevo_post?id_ref='+id+'&usuario_id='+user+'&titulo_post='+titulo);
     Salesforce.insert({
-      query: 'http://developer1-zurdoxtest.cs95.force.com/portalweb/generar_nuevo_post?id_ref='+id+'&usuario_id='+user+'&titulo_post='+titulo, 
+      query: 'http://zurdox.force.com/portalweb/generar_nuevo_post?id_ref='+id+'&usuario_id='+user+'&titulo_post='+titulo, 
       date: moment().format('YYYY-MM-DD'),
     });
-    HTTP.call( 'GET', 'http://developer1-zurdoxtest.cs95.force.com/portalweb/generar_nuevo_post?id_ref='+id+'&usuario_id='+user+'&titulo_post='+titulo, {}, function( error, response )
+    HTTP.call( 'GET', 'http://zurdox.force.com/portalweb/generar_nuevo_post?id_ref='+id+'&usuario_id='+user+'&titulo_post='+titulo, {}, function( error, response )
     {
     if ( error ) {
       console.log( error );
@@ -40,11 +40,11 @@ Meteor.methods({
     check(ciudad, String);
     console.log(ciudad);
     Salesforce.insert({
-      query: 'http://developer1-zurdoxtest.cs95.force.com/portalweb/advocay_nueva_cuenta?id_ref='+facebookId+'&nombre='+username+'&correo='+email+'&ubicacion='+latitud+','+longitud+'&cat='+categoria+'&ciudad='+ciudad+'', 
+      query: 'http://zurdox.force.com/portalweb/advocay_nueva_cuenta?id_ref='+facebookId+'&nombre='+username+'&correo='+email+'&ubicacion='+latitud+','+longitud+'&cat='+categoria+'&ciudad='+ciudad+'', 
       date: moment().format('YYYY-MM-DD'),
     });
-    console.log('http://developer1-zurdoxtest.cs95.force.com/portalweb/advocay_nueva_cuenta?id_ref='+facebookId+'&nombre='+username+'&correo='+email+'&ubicacion='+latitud+','+longitud+'&cat='+categoria+'&ciudad='+ciudad+'');
-    HTTP.call( 'GET', 'http://developer1-zurdoxtest.cs95.force.com/portalweb/advocay_nueva_cuenta?id_ref='+facebookId+'&nombre='+username+'&correo='+email+'&ubicacion='+latitud+','+longitud+'&cat='+categoria+'&ciudad='+ciudad, {}, function( error, response )
+    console.log('http://zurdox.force.com/portalweb/advocay_nueva_cuenta?id_ref='+facebookId+'&nombre='+username+'&correo='+email+'&ubicacion='+latitud+','+longitud+'&cat='+categoria+'&ciudad='+ciudad+'');
+    HTTP.call( 'GET', 'http://zurdox.force.com/portalweb/advocay_nueva_cuenta?id_ref='+facebookId+'&nombre='+username+'&correo='+email+'&ubicacion='+latitud+','+longitud+'&cat='+categoria+'&ciudad='+ciudad, {}, function( error, response )
     {
     if ( error ) {
       console.log( error );
@@ -58,11 +58,11 @@ Meteor.methods({
   getPoints(post_id, clicks, comments, likes, shares)
   {
     Salesforce.insert({
-      query: 'http://developer1-zurdoxtest.cs95.force.com/portalweb/set_points?postid='+post_id+'&Clicks='+clicks+'&Comments='+comments+'&Engry=0&Fun=0&Likes='+likes+'&Love=0&Sad=0&Shares='+shares, 
+      query: 'http://zurdox.force.com/portalweb/set_points?postid='+post_id+'&Clicks='+clicks+'&Comments='+comments+'&Engry=0&Fun=0&Likes='+likes+'&Love=0&Sad=0&Shares='+shares, 
       date: moment().format('YYYY-MM-DD'),
     });
-    console.log('http://developer1-zurdoxtest.cs95.force.com/portalweb/set_points?postid='+post_id+'&Clicks='+clicks+'&Comments='+comments+'&Engry=0&Fun=0&Likes='+likes+'&Love=0&Sad=0&Shares='+shares);
-    HTTP.call( 'GET', 'http://developer1-zurdoxtest.cs95.force.com/portalweb/set_points?postid='+post_id+'&Clicks='+clicks+'&Comments='+comments+'&Engry=0&Fun=0&Likes='+likes+'&Love=0&Sad=0&Shares='+shares, {}, function( error, response )
+    console.log('http://zurdox.force.com/portalweb/set_points?postid='+post_id+'&Clicks='+clicks+'&Comments='+comments+'&Engry=0&Fun=0&Likes='+likes+'&Love=0&Sad=0&Shares='+shares);
+    HTTP.call( 'GET', 'http://zurdox.force.com/portalweb/set_points?postid='+post_id+'&Clicks='+clicks+'&Comments='+comments+'&Engry=0&Fun=0&Likes='+likes+'&Love=0&Sad=0&Shares='+shares, {}, function( error, response )
     {
     if ( error ) {
       console.log( error );
@@ -77,7 +77,7 @@ Meteor.methods({
   },
   updatePosts()
   {
-    HTTP.call( 'GET', 'http://developer1-zurdoxtest.cs95.force.com/portalweb/posts', {}, function( error, response )
+    HTTP.call( 'GET', 'http://zurdox.force.com/portalweb/posts', {}, function( error, response )
   {
     if ( error ) {
       console.log( error );
@@ -109,7 +109,7 @@ Meteor.methods({
   },
   userPoints(userid)
   {
-    HTTP.call( 'GET', 'http://developer1-zurdoxtest.cs95.force.com/portalweb/get_user_points?user='+userid, {}, function( error, response )
+    HTTP.call( 'GET', 'http://zurdox.force.com/portalweb/get_user_points?user='+userid, {}, function( error, response )
   {
     if ( error ) {
       console.log( error );

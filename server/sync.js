@@ -1,7 +1,7 @@
 Meteor.startup(function() {
   if (Posts.find({}).count()===0) 
   {
-    HTTP.call( 'GET', 'http://developer1-zurdoxtest.cs95.force.com/portalweb/posts', {}, function( error, response )
+    HTTP.call( 'GET', 'http://zurdox.force.com/portalweb/posts', {}, function( error, response )
   {
     if ( error ) {
       console.log( error );
@@ -34,7 +34,7 @@ Meteor.startup(function() {
   }
   });
   var everyHour = new Cron(function() {
-    HTTP.call( 'GET', 'http://developer1-zurdoxtest.cs95.force.com/portalweb/posts', {}, function( error, response )
+    HTTP.call( 'GET', 'http://zurdox.force.com/portalweb/posts', {}, function( error, response )
   {
     if ( error ) {
       console.log( error );
